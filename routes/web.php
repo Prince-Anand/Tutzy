@@ -6,8 +6,14 @@ use App\Http\Controllers\ForTutorsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\TutorDashboardController;
+
 use Illuminate\Support\Facades\Artisan;
 
+
+Route::get('/force-seed', function () {
+    Artisan::call('db:seed', ['--force' => true]);
+    return nl2br(Artisan::output());
+});
 Route::get('/force-migrate', function () {
     Artisan::call('migrate', ['--force' => true]);
     return nl2br(Artisan::output());
