@@ -6,7 +6,12 @@ use App\Http\Controllers\ForTutorsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentDashboardController;
 use App\Http\Controllers\TutorDashboardController;
+use Illuminate\Support\Facades\Artisan;
 
+Route::get('/force-migrate', function () {
+    Artisan::call('migrate', ['--force' => true]);
+    return nl2br(Artisan::output());
+});
 Route::get('/', function () {
     return view('welcome');
 });
